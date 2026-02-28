@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Shopping Cart</title>
+    <!-- font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: "Geist", sans-serif;
+            font-optical-sizing: auto;
+        }
+    </style>
+</head>
+<body class="relative p-10">
+    <h1 class="text-2xl text-center font-bold">Desserts Items</h1>
+    <section id="product-card-container" class="p-10 bg-base-300 grid grid-cols-3 gap-4">
+        
+    </section>
+    <button id="show-cart-btn" class="btn btn-primary absolute top-5 right-10"><i class="fa-solid fa-cart-arrow-down"></i>Show Cart</button>
+    <section id="cart-container" class="bg-base-200 w-md text-center absolute top-15 right-11 p-4 ">
+        <div class="text-left"><button class="btn btn-error" id="clear-cart-btn">Clear Cart</button></div>
+        
+        <div id="products-container"></div>
+        <p>Total number of items: <span id="total-items">0</span></p>
+        <p>Subtotal: <span id="subtotal">$0</span></p>
+        <p>Taxes: <span id="taxes">$1.74</span></p>
+        <p>Total: <span id="total">$0</span></p>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
