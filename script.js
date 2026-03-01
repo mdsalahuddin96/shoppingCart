@@ -1,5 +1,13 @@
 const productCardContainer=document.getElementById('product-card-container');
-
+const showCartBtn=document.getElementById('show-cart-btn');
+const clearCartBtn=document.getElementById('clear-cart-btn');
+const cartContainer=document.getElementById('cart-container');
+const showText=document.getElementById('show-text');
+const productCartContainer=document.getElementById('products-container');
+const totalItems=document.getElementById('total-items');
+const subTotalElm=document.getElementById('subtotal');
+const taxElm=document.getElementById('taxes');
+const totalElm=document.getElementById('total');
 const products=[
 {
     id: 1,
@@ -74,9 +82,12 @@ const products=[
     category: "Cupcake",
   },
 ];
+let cartTracker={}
 
+function getValue(element){
+  return Number(element.innerText);
+}
 // Load all products in the ui
-
 for(const {id,name,price,category} of products){
     const card=`<div id=${id} class="card bg-base-100 w-96 shadow-sm">
             <figure class="px-10 pt-10">
@@ -95,4 +106,62 @@ for(const {id,name,price,category} of products){
             </div>
         </div>`;
         productCardContainer.insertAdjacentHTML('beforeend',card);
+}
+
+// show and hide cart
+showCartBtn.addEventListener('click',(event)=>{
+  cartContainer.classList.toggle('hidden');
+  if(showText.innerText==='Show'){
+    showText.innerText="Hide"
+  }
+  else{
+    showText.innerText="Show"
+  }
+})
+
+// clear cart 
+clearCartBtn.addEventListener('click',()=>{
+  const isConfirmed = confirm("Are you sure you want to clear cart items?");
+  if(isConfirmed){
+    productCartContainer.innerHTML='';
+    totalItems.innerText=0;
+    subTotalElm.innerText=0;
+    taxElm.innerText=0;
+    totalElm.innerText=0;
+    cartTracker={}
+  }
+})
+ 
+// functionality for clicking on add to cart button
+productCardContainer.addEventListener('click',(event)=>{
+  if(event.target.tagName==='BUTTON'){
+    const card=event.target.closest('.card');
+    const selectedCard=products.find(product=>product.id===Number(card.id));
+    addToCardContainer(selectedCard);
+  }
+})
+
+// rendering product in cart Container
+function addToCardContainer({id, name, price}){
+  cartTracker[id]=(cartTracker[id]||0)+1;
+  totalItems.innerText=Number(totalItems.innerText)+1;
+    if(cartTracker[id]>1){
+      const item=document.getElementById(`item-${id}`);
+      item.innerText=`${cartTracker[id]} X `;
+    }
+    else{
+      const p=`<p> <span id="item-${id}"></span>${name}- $${price}</p>`;
+      productCartContainer.insertAdjacentHTML('beforeend',p);
+    }
+    priceCalculator(price);
+}
+
+function priceCalculator(price){
+  const subTotalValue=getValue(subTotalElm);
+  const taxValue=getValue(taxElm);
+  let newSubtotal=subTotalValue+price;
+  subTotalElm.innerText=newSubtotal.toFixed(2);
+  const tax=price*0.08;
+  totalElm.innerText=(newSubtotal+tax).toFixed(2);
+  taxElm.innerText=(taxValue+tax).toFixed(2);
 }

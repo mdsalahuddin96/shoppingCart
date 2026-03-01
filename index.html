@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,15 +24,15 @@
     <section id="product-card-container" class="p-10 bg-base-300 grid grid-cols-3 gap-4">
         
     </section>
-    <button id="show-cart-btn" class="btn btn-primary absolute top-5 right-10"><i class="fa-solid fa-cart-arrow-down"></i>Show Cart</button>
-    <section id="cart-container" class="bg-base-200 w-md text-center absolute top-15 right-11 p-4 ">
+    <button id="show-cart-btn" class="btn btn-primary absolute top-5 right-10"><i class="fa-solid fa-cart-arrow-down"></i><span id="show-text">Show</span> Cart</button>
+    <section id="cart-container" class="bg-base-200 w-md text-center absolute top-15 right-11 p-4 hidden">
         <div class="text-left"><button class="btn btn-error" id="clear-cart-btn">Clear Cart</button></div>
         
-        <div id="products-container"></div>
+        <div id="products-container" class="my-5"></div>
         <p>Total number of items: <span id="total-items">0</span></p>
-        <p>Subtotal: <span id="subtotal">$0</span></p>
-        <p>Taxes: <span id="taxes">$1.74</span></p>
-        <p>Total: <span id="total">$0</span></p>
+        <p>Subtotal: $<span id="subtotal">0</span></p>
+        <p>Taxes: $<span id="taxes">0</span></p>
+        <p>Total: $<span id="total">0</span></p>
     </section>
     <script src="script.js"></script>
 </body>
